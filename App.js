@@ -1,9 +1,13 @@
-import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback } from "react";
+import BottomTabNavigation from "./navigation/BottomTabNavigation";
+import { SafeAreaProvider } from "react-native-safe-area-context";
+import { Cart } from "./screens";
 
+const Stack = createNativeStackNavigator();
 export default function App() {
   //if font loaded =>true , loading or not load => false
   const [fontsLoaded] = useFonts({
@@ -23,23 +27,22 @@ export default function App() {
 
   if (!fontsLoaded) return null;
   return (
-    <View style={styles.container}>
-      <Text style={styles.textStyle}>This is Dantruong HNDT</Text>
-      <StatusBar style="auto" />
-    </View>
+    <SafeAreaProvider>
+      <NavigationContainer>
+        {/* <BottomTabNavigation /> */}
+        <Stack.Navigator>
+          <Stack.Screen
+            name="Bottom Navigation"
+            component={BottomTabNavigation}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Cart"
+            component={Cart}
+            options={{ headerShown: false }}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </SafeAreaProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
-  textStyle: {
-    fontFamily: "extrabold",
-
-    fontSize: 20,
-  },
-});
