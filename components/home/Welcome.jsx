@@ -1,13 +1,22 @@
-import { Text, View, TouchableOpacity, TextInput } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons, Feather } from "@expo/vector-icons";
-import styles from "./search.style";
-import { COLORS, SIZES } from "../constants/index";
+import { View, Text, TouchableOpacity, TextInput } from "react-native";
+import React from "react";
+import styles from "./welcome.style";
+import { Feather, Ionicons } from "@expo/vector-icons";
+import { COLORS, SIZES } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
-const Search = () => {
+
+const Welcome = () => {
   const navigation = useNavigation();
   return (
-    <SafeAreaView>
+    <View>
+      <View style={styles.container}>
+        <Text style={styles.welcomeText(COLORS.black, SIZES.xSmall)}>
+          Find The Most
+        </Text>
+        <Text style={styles.welcomeText(COLORS.primary, 0)}>
+          Luxurious Furniture
+        </Text>
+      </View>
       <View style={styles.searchContainer}>
         <TouchableOpacity>
           <Feather name="search" size={24} style={styles.searchIcon} />
@@ -30,8 +39,8 @@ const Search = () => {
           </TouchableOpacity>
         </View>
       </View>
-    </SafeAreaView>
+    </View>
   );
 };
 
-export default Search;
+export default Welcome;
