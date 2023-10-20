@@ -10,20 +10,20 @@ const Search = () => {
     <SafeAreaView>
       <View style={styles.searchContainer}>
         <TouchableOpacity>
-          <Feather name="search" size={24} style={styles.searchIcon} />
+          <Ionicons name="camera-outline" size={24} style={styles.searchIcon} />
         </TouchableOpacity>
         <View style={styles.searchWrapper}>
           <TextInput
             style={styles.searchInput}
-            value={""}
+            value=" "
             placeholder="What are you looking for "
-            onPressIn={() => navigation.navigate("Search")}
+            onPressIn={() => {}}
           />
         </View>
         <View>
           <TouchableOpacity style={styles.searchBtn}>
-            <Ionicons
-              name="camera-outline"
+            <Feather
+              name="search"
               size={SIZES.xLarge}
               color={COLORS.secondary}
             />
