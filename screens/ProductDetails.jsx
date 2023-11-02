@@ -10,8 +10,13 @@ import {
 } from "@expo/vector-icons";
 import { COLORS, SIZES } from "../constants";
 import { useState } from "react";
+import { useRoute } from "@react-navigation/native";
 
 const ProductDetails = ({ navigation }) => {
+  const route = useRoute(); //get data from navigation
+
+  const { item } = route.params;
+ 
   const [count, setCount] = useState(1);
 
   const updateCount = (operation) => {
@@ -41,15 +46,15 @@ const ProductDetails = ({ navigation }) => {
       </View>
       <Image
         source={{
-          uri: "https://images.unsplash.com/photo-1486946255434-2466348c2166?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHJvb20lMjBtb3JkZW58ZW58MHx8MHx8fDA%3D",
+          uri: item.imageUrl,
         }}
         style={styles.image}
       />
       <View style={styles.details}>
         <View style={styles.titleRow}>
-          <Text style={styles.title}>Lorem, ipsum dolor.</Text>
+          <Text style={styles.title}>{item.title}</Text>
           <View style={styles.priceWrapper}>
-            <Text style={styles.price}>$2323</Text>
+            <Text style={styles.price}>${item.price}</Text>
           </View>
         </View>
         <View style={styles.ratingRow}>
@@ -75,13 +80,7 @@ const ProductDetails = ({ navigation }) => {
         <View style={styles.descriptionWrapper}>
           <Text style={styles.description}>Description</Text>
           <Text style={styles.descText}>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatem
-            vero odit voluptatibus commodi consectetur mollitia delectus
-            suscipit facere aperiam explicabo et cum, qui dicta tempore
-            dignissimos? Unde optio quas illum?Lorem ipsum dolor sit amet,
-            consectetur adipisicing elit. Sunt nihil suscipit delectus eaque
-            rerum asperiores perferendis beatae voluptatibus architecto
-            similique.
+            {item.description}
           </Text>
         </View>
         <View style={{ marginBottom: SIZES.small }}>
@@ -90,7 +89,7 @@ const ProductDetails = ({ navigation }) => {
               <Ionicons name={"location-outline"} size={20} />
               <Text>Shoem wherek</Text>
             </View>
-            <View style={{ flexDirection: "row", alignItems: "center" }}>
+            <View style={{ flexDirection: "row", alignItems: "center",gap:10 }}>
               <MaterialCommunityIcons
                 name={"truck-delivery-outline"}
                 size={20}

@@ -5,12 +5,12 @@ import styles from "./productCartView.style";
 import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
-const ProductCartView = () => {
+const ProductCartView = ({ item }) => {
   const navigation = useNavigation();
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("ProductDetails");
+        navigation.navigate("ProductDetails", { item });
       }}
     >
       <View style={styles.container}>
@@ -18,21 +18,19 @@ const ProductCartView = () => {
           <Image
             style={styles.image}
             source={{
-              uri: "https://images.unsplash.com/photo-1486946255434-2466348c2166?auto=format&fit=crop&q=60&w=800&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTN8fHJvb20lMjBtb3JkZW58ZW58MHx8MHx8fDA%3D",
+              uri: item.imageUrl,
             }}
           />
         </View>
         <View style={styles.details}>
           <Text style={styles.title} numberOfLines={1}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Magnam
-            doloribus exercitationem vel itaque voluptates odit fugit laborum
-            alias at commodi.
+            {item.title}
           </Text>
           <Text style={styles.supplier} numberOfLines={1}>
-            Products Title
+            {item.supplier}
           </Text>
           <Text style={styles.price} numberOfLines={1}>
-            $65657
+            $ {item.price}
           </Text>
         </View>
         <TouchableOpacity style={styles.addBtn}>
