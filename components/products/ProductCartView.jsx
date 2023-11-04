@@ -6,6 +6,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { COLORS } from "../../constants";
 import { useNavigation } from "@react-navigation/native";
 const ProductCartView = ({ item }) => {
+
   const navigation = useNavigation();
   return (
     <TouchableOpacity
@@ -40,5 +41,4 @@ const ProductCartView = ({ item }) => {
     </TouchableOpacity>
   );
 };
-
 export default ProductCartView;
